@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -49,15 +50,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String responseText = 'wait response';
 
   void _incrementCounter() {
+    fetchMethod();
+  }
+
+  Future fetchMethod() async {
+    var url = Uri.parse('http://213.139.208.90:8000/api/address/all');
+    var response = await http.get(url);
+    print(response.body);
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      responseText = response.body;
     });
   }
 
@@ -99,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              responseText,
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
