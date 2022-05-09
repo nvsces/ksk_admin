@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'admin_app.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const AdminApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -57,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future fetchMethod() async {
-    var url = Uri.parse('http://localhost:80/api/address/all');
+    var url = Uri.parse('http://213.139.208.90:80/api/address/all');
     var response = await http.get(url);
     print(response.body);
     setState(() {
