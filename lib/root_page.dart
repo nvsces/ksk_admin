@@ -10,7 +10,7 @@ class RootPage extends StatelessWidget {
     return AutoTabsRouter(
       routes: [
         UsersRoute(),
-        const AddressesRoute(),
+        AddressesRoute(),
       ],
       builder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);

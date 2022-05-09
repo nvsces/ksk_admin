@@ -28,8 +28,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: UsersPage(key: args.key));
     },
     AddressesRoute.name: (routeData) {
+      final args = routeData.argsAs<AddressesRouteArgs>(
+          orElse: () => const AddressesRouteArgs());
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const AddressesPage());
+          routeData: routeData, child: AddressesPage(key: args.key));
     }
   };
 
@@ -76,8 +78,21 @@ class UsersRouteArgs {
 
 /// generated route for
 /// [AddressesPage]
-class AddressesRoute extends PageRouteInfo<void> {
-  const AddressesRoute() : super(AddressesRoute.name, path: 'addresses-page');
+class AddressesRoute extends PageRouteInfo<AddressesRouteArgs> {
+  AddressesRoute({Key? key})
+      : super(AddressesRoute.name,
+            path: 'addresses-page', args: AddressesRouteArgs(key: key));
 
   static const String name = 'AddressesRoute';
+}
+
+class AddressesRouteArgs {
+  const AddressesRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AddressesRouteArgs{key: $key}';
+  }
 }
