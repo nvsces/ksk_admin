@@ -11,6 +11,7 @@ class RootPage extends StatelessWidget {
       routes: [
         UsersRoute(),
         AddressesRoute(),
+        RegistrRoute(),
       ],
       builder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);
@@ -44,6 +45,18 @@ class RootPage extends StatelessWidget {
                       },
                       title: const Text('Addresses'),
                       subtitle: const Text('Список все акаунтов и их адрессов',
+                          style: subTitleStyle),
+                    ),
+                    const Divider(
+                      color: Colors.black,
+                    ),
+                    ListTile(
+                      onTap: () {
+                        tabsRouter.setActiveIndex(2);
+                      },
+                      title: const Text('Registr'),
+                      subtitle: const Text(
+                          'Зарегестрировать нового пользователя',
                           style: subTitleStyle),
                     ),
                     const Divider(

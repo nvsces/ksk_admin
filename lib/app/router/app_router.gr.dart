@@ -32,6 +32,10 @@ class _$AppRouter extends RootStackRouter {
           orElse: () => const AddressesRouteArgs());
       return MaterialPageX<dynamic>(
           routeData: routeData, child: AddressesPage(key: args.key));
+    },
+    RegistrRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const RegistrPage());
     }
   };
 
@@ -41,7 +45,9 @@ class _$AppRouter extends RootStackRouter {
           RouteConfig(UsersRoute.name,
               path: 'users-page', parent: RootRoute.name),
           RouteConfig(AddressesRoute.name,
-              path: 'addresses-page', parent: RootRoute.name)
+              path: 'addresses-page', parent: RootRoute.name),
+          RouteConfig(RegistrRoute.name,
+              path: 'registr-page', parent: RootRoute.name)
         ])
       ];
 }
@@ -95,4 +101,12 @@ class AddressesRouteArgs {
   String toString() {
     return 'AddressesRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [RegistrPage]
+class RegistrRoute extends PageRouteInfo<void> {
+  const RegistrRoute() : super(RegistrRoute.name, path: 'registr-page');
+
+  static const String name = 'RegistrRoute';
 }
