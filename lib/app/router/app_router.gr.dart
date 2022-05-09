@@ -22,8 +22,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const RootPage());
     },
     UsersRoute.name: (routeData) {
+      final args = routeData.argsAs<UsersRouteArgs>(
+          orElse: () => const UsersRouteArgs());
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const UsersPage());
+          routeData: routeData, child: UsersPage(key: args.key));
     },
     AddressesRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -53,10 +55,23 @@ class RootRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [UsersPage]
-class UsersRoute extends PageRouteInfo<void> {
-  const UsersRoute() : super(UsersRoute.name, path: 'users-page');
+class UsersRoute extends PageRouteInfo<UsersRouteArgs> {
+  UsersRoute({Key? key})
+      : super(UsersRoute.name,
+            path: 'users-page', args: UsersRouteArgs(key: key));
 
   static const String name = 'UsersRoute';
+}
+
+class UsersRouteArgs {
+  const UsersRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'UsersRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
