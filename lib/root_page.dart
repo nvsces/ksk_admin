@@ -8,9 +8,9 @@ class RootPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: [
+      routes: const [
         UsersRoute(),
-        AddressesRoute(),
+        AddressRoute(),
         RegistrRoute(),
       ],
       builder: (context, child, animation) {

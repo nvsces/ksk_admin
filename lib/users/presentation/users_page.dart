@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ksk_admin/users/data/models/user.dart';
+import 'package:ksk_admin/users/domain/bloc/users_bloc.dart';
 
 class UsersPage extends StatelessWidget {
-  UsersPage({Key? key}) : super(key: key);
+  const UsersPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => UsersBloc()..add(const UsersEvent.read()),
+      child: const UserPageUI(),
+    );
+  }
+}
+
+class UserPageUI extends StatelessWidget {
+  const UserPageUI({Key? key}) : super(key: key);
 
   Widget _buildHeader() {
     return Row(
@@ -29,7 +43,7 @@ class UsersPage extends StatelessWidget {
         ),
         Expanded(
           flex: 2,
-          child: Center(child: Text('recovery_code')),
+          child: Center(child: Text('recoveryCode')),
         ),
       ],
     );
@@ -66,34 +80,37 @@ class UsersPage extends StatelessWidget {
     );
   }
 
-  final users = <User>[
-    User(
-      id: 1,
-      email: 'nvsces@yandex.ru',
-      activateCode: '2422',
-      recoveryCode: '',
-      isActivate: false,
-      isChangePassword: false,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: [
-        _buildHeader(),
-        const Divider(
-          color: Colors.black,
-        ),
-        Expanded(
-          child: ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (context, index) {
-                return _buildItem(users[index]);
-              }),
-        )
-      ],
-    ));
+    return BlocBuilder<UsersBloc, UsersState>(builder: (context, state) {
+      return Scaffold(
+          body: Column(
+        children: [
+          _buildHeader(),
+          const Divider(
+            color: Colors.black,
+          ),
+          state.when(
+            failure: () => const Text('Произошла ошибка'),
+            initial: () => const Text('Начальное состояние'),
+            loaded: (List<User> users) => Expanded(
+              child: ListView.builder(
+                  itemCount: users.length,
+                  itemBuilder: (context, index) {
+                    return _buildItem(users[index]);
+                  }),
+            ),
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+          TextButton(
+              onPressed: () {
+                context.read<UsersBloc>().add(const UsersEvent.read());
+              },
+              child: const Text('Обновить')),
+        ],
+      ));
+    });
   }
 }

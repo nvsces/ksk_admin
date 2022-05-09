@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:ksk_admin/auth/domain/repository/registr_repository.dart';
 import 'package:http/http.dart' as http;
 
-const hostUrl = 'http://localhost:8000';
-// 'http://213.139.208.90:80';
+const hostUrl = 'http://213.139.208.90:80';
 // body: utf8.encode(json.encode(data)),
 
 class RegistrRepositoryApi extends RegistrRepository {

@@ -22,16 +22,12 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const RootPage());
     },
     UsersRoute.name: (routeData) {
-      final args = routeData.argsAs<UsersRouteArgs>(
-          orElse: () => const UsersRouteArgs());
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: UsersPage(key: args.key));
+          routeData: routeData, child: const UsersPage());
     },
-    AddressesRoute.name: (routeData) {
-      final args = routeData.argsAs<AddressesRouteArgs>(
-          orElse: () => const AddressesRouteArgs());
+    AddressRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: AddressesPage(key: args.key));
+          routeData: routeData, child: const AddressPage());
     },
     RegistrRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -44,8 +40,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(RootRoute.name, path: '/', children: [
           RouteConfig(UsersRoute.name,
               path: 'users-page', parent: RootRoute.name),
-          RouteConfig(AddressesRoute.name,
-              path: 'addresses-page', parent: RootRoute.name),
+          RouteConfig(AddressRoute.name,
+              path: 'address-page', parent: RootRoute.name),
           RouteConfig(RegistrRoute.name,
               path: 'registr-page', parent: RootRoute.name)
         ])
@@ -63,44 +59,18 @@ class RootRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [UsersPage]
-class UsersRoute extends PageRouteInfo<UsersRouteArgs> {
-  UsersRoute({Key? key})
-      : super(UsersRoute.name,
-            path: 'users-page', args: UsersRouteArgs(key: key));
+class UsersRoute extends PageRouteInfo<void> {
+  const UsersRoute() : super(UsersRoute.name, path: 'users-page');
 
   static const String name = 'UsersRoute';
 }
 
-class UsersRouteArgs {
-  const UsersRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'UsersRouteArgs{key: $key}';
-  }
-}
-
 /// generated route for
-/// [AddressesPage]
-class AddressesRoute extends PageRouteInfo<AddressesRouteArgs> {
-  AddressesRoute({Key? key})
-      : super(AddressesRoute.name,
-            path: 'addresses-page', args: AddressesRouteArgs(key: key));
+/// [AddressPage]
+class AddressRoute extends PageRouteInfo<void> {
+  const AddressRoute() : super(AddressRoute.name, path: 'address-page');
 
-  static const String name = 'AddressesRoute';
-}
-
-class AddressesRouteArgs {
-  const AddressesRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'AddressesRouteArgs{key: $key}';
-  }
+  static const String name = 'AddressRoute';
 }
 
 /// generated route for
