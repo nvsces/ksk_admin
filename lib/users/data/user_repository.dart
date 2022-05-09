@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'models/user.dart';
 import 'package:http/http.dart' as http;
 
-const hostUrl = 'http://localhost:8000';
-
 class UserRepository {
   Future<List<User>> fetchAllUsers() async {
     var url = Uri.parse('$hostUrl/api/profile/users');

@@ -4,7 +4,7 @@ import 'package:ksk_admin/address/data/models/address.dart';
 
 import 'package:http/http.dart' as http;
 
-const hostUrl = 'http://localhost:8000';
+import '../../auth/data/registr_repository_api.dart';
 
 class AddressRepository {
   Future<List<Address>> fetchAllAddresses() async {
