@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future fetchMethod() async {
-    var url = Uri.parse('http://213.139.208.90:8000/api/address/all');
+    var url = Uri.parse('http://localhost:80/api/address/all');
     var response = await http.get(url);
     print(response.body);
     setState(() {
